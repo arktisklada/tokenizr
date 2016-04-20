@@ -1,0 +1,21 @@
+PATH
+  remote: .
+  specs:
+    tokenizr (1.0.0)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    minitest (5.8.4)
+    rake (10.5.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  minitest
+  rake
+  tokenizr!
+
+BUNDLED WITH
+   1.10.6
