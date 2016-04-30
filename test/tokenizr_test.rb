@@ -1,7 +1,7 @@
 require 'tokenizr'
 require 'minitest/autorun'
 
-class TestTokenizr  < MiniTest::Unit::TestCase
+class TokenizrTest  < MiniTest::Unit::TestCase
   describe '#encode' do
     it 'encodes the given number into a string' do
       assert_equal Tokenizr.encode(123), "5IbEL8X9e"
