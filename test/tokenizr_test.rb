@@ -1,4 +1,4 @@
-require 'tokenizr'
+require_relative '../lib/tokenizr'
 require 'minitest/autorun'
 
 class TokenizrTest  < MiniTest::Unit::TestCase
@@ -20,6 +20,24 @@ class TokenizrTest  < MiniTest::Unit::TestCase
       range = (2...1000000)
       1000.times do
         assert_operator Tokenizr.encode(rand(range)).length, :>=, 9
+      end
+    end
+
+    it 'raises error when given argument is nil' do
+      assert_raises Tokenizr::Error do
+        Tokenizr.encode(nil)
+      end
+    end
+
+    it 'raises error when given argument is a float' do
+      assert_raises Tokenizr::Error do
+        Tokenizr.encode(1.23)
+      end
+    end
+
+    it 'raises error when given argument is not a number' do
+      ["123", true, [], {}, Object.new].each do |type|
+        assert_raises(Tokenizr::Error) { Tokenizr.encode(type) }
       end
     end
   end

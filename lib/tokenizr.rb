@@ -1,8 +1,16 @@
+require 'tokenizr/error'
+
 module Tokenizr
   INDEX = 'abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'
   LENGTH = 15
 
   def self.encode(number)
+    if number.nil?
+      raise Error.new 'Supplied argument must be a number (nil found)'
+    elsif number.class != Fixnum || number.to_i != number
+      raise Error.new 'Supplied argument must be an integer'
+    end
+
     number = lengthen(number).to_i
     ret = ''
 
