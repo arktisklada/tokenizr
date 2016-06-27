@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    tokenizr (1.0.0)
+    tokenizr (1.0.2)
 
 GEM
   remote: https://rubygems.org/

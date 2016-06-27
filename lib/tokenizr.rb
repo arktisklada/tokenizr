@@ -5,10 +5,8 @@ module Tokenizr
   LENGTH = 15
 
   def self.encode(number)
-    if number.nil?
-      raise Error.new 'Supplied argument must be a number (nil found)'
-    elsif number.class != Fixnum || number.to_i != number
-      raise Error.new 'Supplied argument must be an integer'
+    if number.class != Fixnum || number.to_i != number
+      raise Error.new "Supplied argument must be an integer (#{number.class} found)"
     end
 
     number = lengthen(number).to_i
@@ -23,6 +21,10 @@ module Tokenizr
   end
 
   def self.decode(string)
+    if string.class != String
+      raise Error.new "Supplied argument must be a string (#{string.class} found)"
+    end
+
     str = string.reverse
     ret = 0
 

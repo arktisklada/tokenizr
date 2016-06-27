@@ -23,20 +23,12 @@ class TokenizrTest  < MiniTest::Unit::TestCase
       end
     end
 
-    it 'raises error when given argument is nil' do
-      assert_raises Tokenizr::Error do
-        Tokenizr.encode(nil)
-      end
-    end
-
     it 'raises error when given argument is a float' do
-      assert_raises Tokenizr::Error do
-        Tokenizr.encode(1.23)
-      end
+      assert_raises(Tokenizr::Error) { Tokenizr.encode(1.23) }
     end
 
     it 'raises error when given argument is not a number' do
-      ["123", true, [], {}, Object.new].each do |type|
+      [nil, "123", true, [], {}, Object.new].each do |type|
         assert_raises(Tokenizr::Error) { Tokenizr.encode(type) }
       end
     end
@@ -46,6 +38,12 @@ class TokenizrTest  < MiniTest::Unit::TestCase
     it 'decodes the given string into a number' do
       assert_equal Tokenizr.decode("5IbEL8X9e"), 123
       assert_equal Tokenizr.decode("VGh4Q9X9e"), 987654321
+    end
+
+    it 'raises error when given argument is not a string' do
+      [nil, 123, 1.23, true, [], {}, Object.new].each do |type|
+        assert_raises(Tokenizr::Error) { Tokenizr.decode(type) }
+      end
     end
   end
 end
