@@ -8,6 +8,13 @@ Tokenizr.encode(123)         # => "5IbEL8X9e"
 Tokenizr.decode("5IbEL8X9e") # => 123
 ```
 
+A token can also be tested for validity:
+
+```
+Tokenizr.valid_token?("5IbEL8X9e") # => true
+Tokenizr.valid_token?(nil)         # => false
+```
+
 ## Contributing
 
 1. Create an issue
