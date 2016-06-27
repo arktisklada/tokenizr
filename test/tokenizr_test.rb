@@ -2,7 +2,7 @@ require_relative '../lib/tokenizr'
 require 'minitest/autorun'
 
 class TokenizrTest  < MiniTest::Unit::TestCase
-  describe '#encode' do
+  describe '.encode' do
     it 'encodes the given number into a string' do
       assert_equal Tokenizr.encode(123), "5IbEL8X9e"
       assert_equal Tokenizr.encode(987654321), "VGh4Q9X9e"
@@ -34,7 +34,7 @@ class TokenizrTest  < MiniTest::Unit::TestCase
     end
   end
 
-  describe '#decode' do
+  describe '.decode' do
     it 'decodes the given string into a number' do
       assert_equal Tokenizr.decode("5IbEL8X9e"), 123
       assert_equal Tokenizr.decode("VGh4Q9X9e"), 987654321
@@ -43,6 +43,20 @@ class TokenizrTest  < MiniTest::Unit::TestCase
     it 'raises error when given argument is not a string' do
       [nil, 123, 1.23, true, [], {}, Object.new].each do |type|
         assert_raises(Tokenizr::Error) { Tokenizr.decode(type) }
+      end
+    end
+  end
+
+  describe '.valid_token?' do
+    it 'returns true for valid tokens' do
+      ["5IbEL8X9e", "VGh4Q9X9e"].each do |token|
+        assert_equal Tokenizr.valid_token?(token), true
+      end
+    end
+
+    it 'returns false for invalid tokens' do
+      [nil, 123, 1.23, [], {}, ''].each do |token|
+        assert_equal Tokenizr.valid_token?(token), false
       end
     end
   end

@@ -35,6 +35,10 @@ module Tokenizr
     ret.to_s[1..-1].to_i
   end
 
+  def self.valid_token?(token)
+    token.class == String && token.length == Tokenizr.encode(1).length
+  end
+
 
   private
 
